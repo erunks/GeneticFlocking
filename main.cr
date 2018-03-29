@@ -8,14 +8,14 @@ require "./Boid"
 
 window = SF::RenderWindow.new(
   SF::VideoMode.new(400,300),
-  "test",
+  "Flocking",
   settings: SF::ContextSettings.new(depth: 24, antialiasing: 8)
 );
 window.vertical_sync_enabled = true;
 
 
 b = Boid.new(SF::Vector3f.new(150.0_f32,150.0_f32,0.0_f32),1.0_f32,Math.rad(90.0),50.0_f32);
-
+# b.applyForce(SF::Vector3f.new(-0.25_f32,0.0_f32,0.0_f32));
 
 while window.open?()
   # check all the window's events that were triggered since the last iteration of the loop
@@ -28,6 +28,7 @@ while window.open?()
   end
 
   window.clear(SF::Color::Black);
+  # b.run(f.boids, window);
   b.draw(window);
 
   window.display();
